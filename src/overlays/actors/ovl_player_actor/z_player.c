@@ -1095,7 +1095,7 @@ static LinkAnimationHeader* D_80854378[] = {
 static u8 D_80854380[2] = { 0x18, 0x19 };
 static u8 D_80854384[2] = { 0x1A, 0x1B };
 
-static u16 D_80854388[] = { BTN_B, BTN_CLEFT, BTN_CDOWN, BTN_CRIGHT };
+static u16 D_80854388[] = { BTN_B, BTN_CLEFT, BTN_CDOWN, BTN_CRIGHT, BTN_CUP, BTN_DLEFT, BTN_DDOWN, BTN_DRIGHT, BTN_DUP };
 
 static u8 sMagicSpellCosts[] = { 12, 24, 24, 12, 24, 12 };
 
@@ -1860,18 +1860,28 @@ s32 func_80833C98(s32 item1, s32 actionParam) {
 }
 
 s32 func_80833CDC(GlobalContext* globalCtx, s32 index) {
-    if (index >= 4) {
+    if (index >= 9) {
         return ITEM_NONE;
     } else if (globalCtx->bombchuBowlingStatus != 0) {
         return (globalCtx->bombchuBowlingStatus > 0) ? ITEM_BOMBCHU : ITEM_NONE;
     } else if (index == 0) {
         return B_BTN_ITEM;
-    } else if (index == 1) {
-        return C_BTN_ITEM(0);
-    } else if (index == 2) {
-        return C_BTN_ITEM(1);
-    } else {
-        return C_BTN_ITEM(2);
+    } else if (index == 1 && GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_USE);
+    } else if (index == 2 && GetCMenuItem(globalCtx, 2, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 2, MENU_RETURN_MODE_USE);
+    } else if (index == 3 && GetCMenuItem(globalCtx, 3, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 3, MENU_RETURN_MODE_USE);
+    } else if (index == 4 && GetCMenuItem(globalCtx, 4, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 4, MENU_RETURN_MODE_USE);
+    } else if (index == 5 && GetCMenuItem(globalCtx, 5, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 5, MENU_RETURN_MODE_USE);
+    } else if (index == 6 && GetCMenuItem(globalCtx, 6, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 6, MENU_RETURN_MODE_USE);
+    } else if (index == 7 && GetCMenuItem(globalCtx, 7, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 7, MENU_RETURN_MODE_USE);
+    } else if (index == 8 && GetCMenuItem(globalCtx, 8, MENU_RETURN_MODE_VALIDATE) != ITEM_NONE) {
+        return GetCMenuItem(globalCtx, 8, MENU_RETURN_MODE_USE);
     }
 }
 
@@ -1882,16 +1892,17 @@ void func_80833DF8(Player* this, GlobalContext* globalCtx) {
 
     if (this->currentMask != PLAYER_MASK_NONE) {
         maskActionParam = this->currentMask - 1 + PLAYER_AP_MASK_KEATON;
-        if (!func_80833C98(C_BTN_ITEM(0), maskActionParam) && !func_80833C98(C_BTN_ITEM(1), maskActionParam) &&
-            !func_80833C98(C_BTN_ITEM(2), maskActionParam)) {
+        if (!func_80833C98(GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE), maskActionParam) && !func_80833C98(GetCMenuItem(globalCtx, 2, MENU_RETURN_MODE_VALIDATE), maskActionParam) &&
+            !func_80833C98(GetCMenuItem(globalCtx, 3, MENU_RETURN_MODE_VALIDATE), maskActionParam) && !func_80833C98(GetCMenuItem(globalCtx, 4, MENU_RETURN_MODE_VALIDATE), maskActionParam)) {
             this->currentMask = PLAYER_MASK_NONE;
         }
     }
 
     if (!(this->stateFlags1 & 0x20000800) && !func_8008F128(this)) {
         if (this->itemActionParam >= PLAYER_AP_FISHING_POLE) {
-            if (!func_80833C50(this, B_BTN_ITEM) && !func_80833C50(this, C_BTN_ITEM(0)) &&
-                !func_80833C50(this, C_BTN_ITEM(1)) && !func_80833C50(this, C_BTN_ITEM(2))) {
+            if (!func_80833C50(this, B_BTN_ITEM) && !func_80833C50(this, GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE)) &&
+                !func_80833C50(this, GetCMenuItem(globalCtx, 2, MENU_RETURN_MODE_VALIDATE)) && !func_80833C50(this, GetCMenuItem(globalCtx, 3, MENU_RETURN_MODE_VALIDATE)) &&
+                !func_80833C50(this, GetCMenuItem(globalCtx, 4, MENU_RETURN_MODE_VALIDATE))) {
                 func_80835F44(globalCtx, this, ITEM_NONE);
                 return;
             }
@@ -4883,7 +4894,8 @@ s32 func_8083B644(Player* this, GlobalContext* globalCtx) {
                             this->stateFlags2 |= 0x200000;
                         }
 
-                        if (!CHECK_BTN_ALL(sControlInput->press.button, BTN_CUP) && !sp28) {
+                        // Rebind speak to Navi to L
+                        if (!CHECK_BTN_ALL(sControlInput->press.button, BTN_L) && !sp28) {
                             return 0;
                         }
 
@@ -4927,17 +4939,59 @@ s32 func_8083B8F4(Player* this, GlobalContext* globalCtx) {
 }
 
 s32 func_8083B998(Player* this, GlobalContext* globalCtx) {
+    InterfaceContext* interfaceCtx = &globalCtx->interfaceCtx;
+    s16 alpha = 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5);
+
     if (this->unk_6AD != 0) {
         func_8083B040(this, globalCtx);
         return 1;
     }
 
+    // Rebind First Person toggle to L
+    // Only toggle First Person while on the C-Menu Index
+    // return to the C-Menu Index by pressing L
     if ((this->unk_664 != NULL) &&
         (((this->unk_664->flags & 0x40001) == 0x40001) || (this->unk_664->naviEnemyId != 0xFF))) {
         this->stateFlags2 |= 0x200000;
-    } else if ((this->naviTextId == 0) && !func_8008E9C4(this) && CHECK_BTN_ALL(sControlInput->press.button, BTN_CUP) &&
-               (YREG(15) != 0x10) && (YREG(15) != 0x20) && !func_8083B8F4(this, globalCtx)) {
-        func_80078884(NA_SE_SY_ERROR);
+    } else if ((this->naviTextId == 0) && !func_8008E9C4(this) &&
+                CHECK_BTN_ALL(sControlInput->press.button, BTN_L)) {
+        if (gSaveContext.equips.cMenu != MENU_PAGE_INDEX) {
+            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+            Interface_LoadItemIcon1(globalCtx, 1);
+            Interface_LoadItemIcon1(globalCtx, 2);
+            Interface_LoadItemIcon1(globalCtx, 3);
+            Interface_LoadItemIcon1(globalCtx, 4);
+
+            // for some reason this isn't compiling
+            //func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+
+            // so uh, I guess I'll just put this here
+            if (gSaveContext.buttonStatus[0] == BTN_DISABLED) {
+                if (interfaceCtx->bAlpha != 70) {
+                    interfaceCtx->bAlpha = 70;
+                }
+            } else {
+                if (interfaceCtx->bAlpha != 255) {
+                    interfaceCtx->bAlpha = alpha;
+                }
+            }
+
+            if ((gSaveContext.equips.cMenu < MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
+                (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 5, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
+                if (interfaceCtx->cLeftAlpha != 70) {
+                    interfaceCtx->cLeftAlpha = 70;
+                }
+            } else {
+                if (interfaceCtx->cLeftAlpha != 255) {
+                    interfaceCtx->cLeftAlpha = alpha;
+                }
+            }
+        } else if ((YREG(15) != 0x10) && (YREG(15) != 0x20) &&
+            !func_8083B8F4(this, globalCtx)) {
+            func_80078884(NA_SE_SY_ERROR);
+        }
     }
 
     return 0;
@@ -10635,13 +10689,14 @@ void func_8084B1D8(Player* this, GlobalContext* globalCtx) {
         func_80836670(this, globalCtx);
     }
 
+    // Include L and the D-Pad in canceling First Person
     if ((this->csMode != 0) || (this->unk_6AD == 0) || (this->unk_6AD >= 4) || func_80833B54(this) ||
         (this->unk_664 != NULL) || !func_8083AD4C(globalCtx, this) ||
         (((this->unk_6AD == 2) && (CHECK_BTN_ANY(sControlInput->press.button, BTN_A | BTN_B | BTN_R) ||
                                    func_80833B2C(this) || (!func_8002DD78(this) && !func_808334B4(this)))) ||
          ((this->unk_6AD == 1) &&
           CHECK_BTN_ANY(sControlInput->press.button,
-                        BTN_A | BTN_B | BTN_R | BTN_CUP | BTN_CLEFT | BTN_CRIGHT | BTN_CDOWN)))) {
+                        BTN_A | BTN_B | BTN_R | BTN_CUP | BTN_CLEFT | BTN_CRIGHT | BTN_CDOWN | BTN_L | BTN_DUP | BTN_DLEFT | BTN_DRIGHT | BTN_DDOWN)))) {
         func_8083C148(this, globalCtx);
         func_80078884(NA_SE_SY_CAMERA_ZOOM_UP);
     } else if ((DECR(this->unk_850) == 0) || (this->unk_6AD != 2)) {

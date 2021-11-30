@@ -337,11 +337,11 @@ void KaleidoScope_DrawItemSelect(GlobalContext* globalCtx) {
             if (!((gSlotAgeReqs[cursorSlot] == 9) || (gSlotAgeReqs[cursorSlot] == ((void)0, gSaveContext.linkAge)))) {
                 pauseCtx->nameColorSet = 1;
             }
-
+            
             if (cursorItem != PAUSE_ITEM_NONE) {
                 index = cursorSlot * 4; // required to match?
                 KaleidoScope_SetCursorVtx(pauseCtx, index, pauseCtx->itemVtx);
-
+                /* no equipping items
                 if ((pauseCtx->debugState == 0) && (pauseCtx->state == 6) && (pauseCtx->unk_1E4 == 0)) {
                     if (CHECK_BTN_ANY(input->press.button, BTN_CLEFT | BTN_CDOWN | BTN_CRIGHT)) {
                         if (((gSlotAgeReqs[cursorSlot] == 9) ||
@@ -390,6 +390,7 @@ void KaleidoScope_DrawItemSelect(GlobalContext* globalCtx) {
                         }
                     }
                 }
+                */
             } else {
                 pauseCtx->cursorVtx[0].v.ob[0] = pauseCtx->cursorVtx[2].v.ob[0] = pauseCtx->cursorVtx[1].v.ob[0] =
                     pauseCtx->cursorVtx[3].v.ob[0] = 0;

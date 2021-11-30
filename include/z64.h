@@ -675,7 +675,7 @@ typedef struct {
     /* 0x024A */ u16    cLeftAlpha;
     /* 0x024C */ u16    cDownAlpha;
     /* 0x024E */ u16    cRightAlpha;
-    /* 0x0250 */ u16    healthAlpha; // also max C-Up alpha
+    /* 0x0250 */ u16    healthAlpha; // also max L alpha
     /* 0x0252 */ u16    magicAlpha; // also Rupee and Key counters alpha
     /* 0x0254 */ u16    minimapAlpha;
     /* 0x0256 */ s16    startAlpha;
@@ -699,6 +699,7 @@ typedef struct {
         /* 0x026C */ u8    dinsNayrus; // "m_magic"; din's fire and nayru's love
         /* 0x026D */ u8    all;        // "another"; enables all item restrictions
     }                   restrictions;
+    u16 cUpAlpha;
 } InterfaceContext; // size = 0x270
 
 typedef struct {

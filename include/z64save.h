@@ -4,11 +4,31 @@
 #include "ultra64.h"
 #include "z64math.h"
 
+typedef enum {
+    /* 0x00 */ MENU_PAGE_INDEX,   /* Index Page */
+    /* 0x01 */ MENU_PAGE_LEFT, /* Left Page */
+    /* 0x02 */ MENU_PAGE_DOWN,     /* Down Page */
+    /* 0x03 */ MENU_PAGE_RIGHT,     /* Right Page */
+    /* 0x04 */ MENU_PAGE_UP,     /* Up Page */
+    /* 0x05 */ MENU_PAGE_D_INDEX,   /* Index Page */
+    /* 0x06 */ MENU_PAGE_D_LEFT, /* Left Page */
+    /* 0x07 */ MENU_PAGE_D_DOWN,     /* Down Page */
+    /* 0x08 */ MENU_PAGE_D_RIGHT,     /* Right Page */
+    /* 0x09 */ MENU_PAGE_D_UP     /* Up Page */
+} MenuPages;
+
+typedef enum {
+    /* 0x00 */ MENU_RETURN_MODE_ICON,   /* Return Icon Item */
+    /* 0x01 */ MENU_RETURN_MODE_VALIDATE, /* Return Use Item */
+    /* 0x02 */ MENU_RETURN_MODE_USE /* Return Use Item */
+} MenuReturnMode;
+
 typedef struct {
     /* 0x00 */ u8 buttonItems[4];
     /* 0x04 */ u8 cButtonSlots[3];
     /* 0x08 */ u16 equipment;
-} ItemEquips; // size = 0x0A
+    /* 0x0A */ u8 cMenu;
+} ItemEquips; // size = 0x0C
 
 typedef struct {
     /* 0x00 */ u8 items[24];

@@ -118,11 +118,13 @@ static SavePlayerData sNewSavePlayerData = {
         { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
         { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
         0,                                              // equipment
+        MENU_PAGE_INDEX,                                // C-Menu
     },                                                  // childEquips
     {
         { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
         { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
         0,                                              // equipment
+        MENU_PAGE_INDEX,                                // C-Menu
     },                                                  // adultEquips
     0,                                                  // unk_38
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },       // unk_3C
@@ -133,6 +135,7 @@ static ItemEquips sNewSaveEquips = {
     { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
     { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
     0x1100,                                         // equipment
+    MENU_PAGE_INDEX,                                // C-Menu
 };
 
 static Inventory sNewSaveInventory = {
@@ -201,11 +204,13 @@ static SavePlayerData sDebugSavePlayerData = {
         { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
         { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
         0,                                              // equipment
+        MENU_PAGE_INDEX,                                // C-Menu
     },                                                  // childEquips
     {
         { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
         { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
         0,                                              // equipment
+        MENU_PAGE_INDEX,                                // C-Menu
     },                                                  // adultEquips
     0,                                                  // unk_38
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },       // unk_3C
@@ -216,6 +221,7 @@ static ItemEquips sDebugSaveEquips = {
     { ITEM_SWORD_MASTER, ITEM_BOW, ITEM_BOMB, ITEM_OCARINA_FAIRY }, // buttonItems
     { SLOT_BOW, SLOT_BOMB, SLOT_OCARINA },                          // cButtonSlots
     0x1122,                                                         // equipment
+    MENU_PAGE_INDEX,                                // C-Menu
 };
 
 static Inventory sDebugSaveInventory = {
