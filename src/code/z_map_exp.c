@@ -365,7 +365,7 @@ void Minimap_Draw(GlobalContext* globalCtx) {
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_map_exp.c", 626);
 
-    if (globalCtx->pauseCtx.state < 4) {
+    if (globalCtx->pauseCtx.state < 3) {
         switch (globalCtx->sceneNum) {
             case SCENE_YDAN:
             case SCENE_DDAN:

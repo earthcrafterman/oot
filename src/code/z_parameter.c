@@ -2774,9 +2774,9 @@ void Interface_DrawItemButtons(GlobalContext* globalCtx) {
     // C-Left Button Color & Texture
     gDPPipeSync(OVERLAY_DISP++);
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                     interfaceCtx->cLeftAlpha);
     gSPTextureRectangle(OVERLAY_DISP++, R_ITEM_BTN_X(1) << 2, R_ITEM_BTN_Y(1) << 2,
                         (R_ITEM_BTN_X(1) + R_ITEM_BTN_WIDTH(1)) << 2, (R_ITEM_BTN_Y(1) + R_ITEM_BTN_WIDTH(1)) << 2,
@@ -2784,9 +2784,9 @@ void Interface_DrawItemButtons(GlobalContext* globalCtx) {
 
     // C-Down Button Color & Texture
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                     interfaceCtx->cDownAlpha);
     gSPTextureRectangle(OVERLAY_DISP++, R_ITEM_BTN_X(2) << 2, R_ITEM_BTN_Y(2) << 2,
                         (R_ITEM_BTN_X(2) + R_ITEM_BTN_WIDTH(2)) << 2, (R_ITEM_BTN_Y(2) + R_ITEM_BTN_WIDTH(2)) << 2,
@@ -2794,9 +2794,9 @@ void Interface_DrawItemButtons(GlobalContext* globalCtx) {
 
     // C-Right Button Color & Texture
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0), 
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1), 
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                     interfaceCtx->cRightAlpha);
     gSPTextureRectangle(OVERLAY_DISP++, R_ITEM_BTN_X(3) << 2, R_ITEM_BTN_Y(3) << 2,
                         (R_ITEM_BTN_X(3) + R_ITEM_BTN_WIDTH(3)) << 2, (R_ITEM_BTN_Y(3) + R_ITEM_BTN_WIDTH(3)) << 2,
@@ -2804,9 +2804,9 @@ void Interface_DrawItemButtons(GlobalContext* globalCtx) {
 
     // C-Up Button Color & Texture
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                     interfaceCtx->cUpAlpha);
     gSPTextureRectangle(OVERLAY_DISP++, C_UP_BUTTON_X << 2, C_UP_BUTTON_Y << 2,
                         (C_UP_BUTTON_X + R_ITEM_BTN_WIDTH(3)) << 2, (C_UP_BUTTON_Y + R_ITEM_BTN_WIDTH(3)) << 2,
@@ -2887,27 +2887,27 @@ void Interface_DrawItemButtons(GlobalContext* globalCtx) {
         if (GetCMenuItem(globalCtx, temp, MENU_RETURN_MODE_ICON) > 0xF0) {
             if (temp == 1) {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                                 interfaceCtx->cLeftAlpha);
             } else if (temp == 2) {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                                 interfaceCtx->cDownAlpha);
             } else if (temp == 3) {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                                 interfaceCtx->cRightAlpha);
             } else {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0,
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(0),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(1),
-                                gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : R_C_BTN_COLOR(2),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(0),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 64 : R_C_BTN_COLOR(1),
+                    gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX ? 128 : gSaveContext.equips.cMenu == MENU_PAGE_INDEX ? 128 : R_C_BTN_COLOR(2),
                                 interfaceCtx->cUpAlpha);
             }
 
@@ -4479,21 +4479,9 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_ICON: 
                     switch(button) {
                         case 1:
-                            return ITEM_SLINGSHOT;
-                        break;
-
                         case 2:
-                            return ITEM_BOTTLE;
-                        break;
-
                         case 3:
-                            return ITEM_BOW;
-                        break;
-
                         case 4:
-                            return ITEM_LENS;
-                        break;
-
                         default:
                             return ITEM_NONE;
                         break;
@@ -4543,10 +4531,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                         break;
 
                         case 5:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 6:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 7:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 8:
-                            gSaveContext.equips.cMenu = MENU_PAGE_D_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -4655,10 +4670,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                         break;
 
                         case 5:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 6:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 7:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 8:
-                            gSaveContext.equips.cMenu = MENU_PAGE_D_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -4767,10 +4809,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                         break;
 
                         case 5:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 6:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 7:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 8:
-                            gSaveContext.equips.cMenu = MENU_PAGE_D_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -4867,10 +4936,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                         break;
 
                         case 5:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 6:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 7:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 8:
-                            gSaveContext.equips.cMenu = MENU_PAGE_D_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -4967,10 +5063,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                         break;
 
                         case 5:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 6:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 7:
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 8:
-                            gSaveContext.equips.cMenu = MENU_PAGE_D_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_D_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -5000,21 +5123,9 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_ICON: 
                     switch(button) {
                         case 1:
-                            return ITEM_TUNIC_KOKIRI;
-                        break;
-
                         case 2:
-                            return ITEM_SHIELD_DEKU;
-                        break;
-
                         case 3:
-                            return ITEM_BOOTS_KOKIRI;
-                        break;
-
                         case 4:
-                            return ITEM_SWORD_KOKIRI;
-                        break;
-
                         default:
                             return ITEM_NONE;
                         break;
@@ -5024,10 +5135,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_USE:
                     switch(button) {
                         case 1:
+                            gSaveContext.equips.cMenu = MENU_PAGE_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 2:
+                            gSaveContext.equips.cMenu = MENU_PAGE_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 3:
+                            gSaveContext.equips.cMenu = MENU_PAGE_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 4:
-                            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -5178,10 +5316,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_USE:
                     switch(button) {
                         case 1:
+                            gSaveContext.equips.cMenu = MENU_PAGE_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 2:
+                            gSaveContext.equips.cMenu = MENU_PAGE_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 3:
+                            gSaveContext.equips.cMenu = MENU_PAGE_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 4:
-                            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -5326,10 +5491,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_USE:
                     switch(button) {
                         case 1:
+                            gSaveContext.equips.cMenu = MENU_PAGE_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 2:
+                            gSaveContext.equips.cMenu = MENU_PAGE_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 3:
+                            gSaveContext.equips.cMenu = MENU_PAGE_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 4:
-                            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -5462,10 +5654,37 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_USE:
                     switch(button) {
                         case 1:
+                            gSaveContext.equips.cMenu = MENU_PAGE_LEFT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 2:
+                            gSaveContext.equips.cMenu = MENU_PAGE_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 3:
+                            gSaveContext.equips.cMenu = MENU_PAGE_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
                         case 4:
-                            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_UP;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
@@ -5607,14 +5826,42 @@ u8 GetCMenuItem(GlobalContext* globalCtx, u8 button, MenuReturnMode menuReturnMo
                 case MENU_RETURN_MODE_USE:
                     switch(button) {
                         case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                            gSaveContext.equips.cMenu = MENU_PAGE_INDEX;
+                            gSaveContext.equips.cMenu = MENU_PAGE_LEFT;
                             Interface_LoadItemIcon1(globalCtx, 1);
                             Interface_LoadItemIcon1(globalCtx, 2);
                             Interface_LoadItemIcon1(globalCtx, 3);
                             Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
+                        case 2:
+                            gSaveContext.equips.cMenu = MENU_PAGE_DOWN;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
+                        case 3:
+                            gSaveContext.equips.cMenu = MENU_PAGE_RIGHT;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
+                            return ITEM_NONE;
+                        break;
+
+                        case 4:
+                            gSaveContext.equips.cMenu = MENU_PAGE_UP;
+                            Interface_LoadItemIcon1(globalCtx, 1);
+                            Interface_LoadItemIcon1(globalCtx, 2);
+                            Interface_LoadItemIcon1(globalCtx, 3);
+                            Interface_LoadItemIcon1(globalCtx, 4);
+                            func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
                             return ITEM_NONE;
                         break;
 

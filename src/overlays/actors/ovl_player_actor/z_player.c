@@ -4961,31 +4961,58 @@ s32 func_8083B998(Player* this, GlobalContext* globalCtx) {
             Interface_LoadItemIcon1(globalCtx, 2);
             Interface_LoadItemIcon1(globalCtx, 3);
             Interface_LoadItemIcon1(globalCtx, 4);
-
-            // for some reason this isn't compiling
-            //func_80082644(globalCtx, 255 - (gSaveContext.unk_13EC << 5 < 0 ? 0 : gSaveContext.unk_13EC << 5));
-
-            // so uh, I guess I'll just put this here
-            if (gSaveContext.buttonStatus[0] == BTN_DISABLED) {
-                if (interfaceCtx->bAlpha != 70) {
-                    interfaceCtx->bAlpha = 70;
-                }
-            } else {
-                if (interfaceCtx->bAlpha != 255) {
-                    interfaceCtx->bAlpha = alpha;
-                }
-            }
-
+            
             if ((gSaveContext.equips.cMenu < MENU_PAGE_D_INDEX &&
-                GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
-                (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
-                GetCMenuItem(globalCtx, 5, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
+                    GetCMenuItem(globalCtx, 1, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
+                    (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
+                    GetCMenuItem(globalCtx, 5, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
                 if (interfaceCtx->cLeftAlpha != 70) {
                     interfaceCtx->cLeftAlpha = 70;
                 }
             } else {
                 if (interfaceCtx->cLeftAlpha != 255) {
                     interfaceCtx->cLeftAlpha = alpha;
+                }
+            }
+
+            if ((gSaveContext.equips.cMenu < MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 2, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
+                (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 6, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
+                if (interfaceCtx->cDownAlpha != 70) {
+                    interfaceCtx->cDownAlpha = 70;
+                }
+            } else {
+                if (interfaceCtx->cDownAlpha != 255) {
+                    interfaceCtx->cDownAlpha = alpha;
+                }
+            }
+
+            if ((gSaveContext.equips.cMenu < MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 3, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
+                (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 7, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
+                if (interfaceCtx->cRightAlpha != 70) {
+                    interfaceCtx->cRightAlpha = 70;
+                }
+            } else {
+                if (interfaceCtx->cRightAlpha != 255) {
+                    interfaceCtx->cRightAlpha = alpha;
+                }
+            }
+
+            if ((gSaveContext.equips.cMenu < MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 4, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE) ||
+                (gSaveContext.equips.cMenu >= MENU_PAGE_D_INDEX &&
+                GetCMenuItem(globalCtx, 8, MENU_RETURN_MODE_VALIDATE) == ITEM_NONE)) {
+                if (interfaceCtx->cUpAlpha != 70) {
+                    interfaceCtx->cUpAlpha = 70;
+                    Interface_LoadItemIcon1(globalCtx, 4);
+                }
+            } else {
+                if (interfaceCtx->cUpAlpha != 255) {
+                    interfaceCtx->cUpAlpha = alpha;
+                    Interface_LoadItemIcon1(globalCtx, 4);
                 }
             }
         } else if ((YREG(15) != 0x10) && (YREG(15) != 0x20) &&
