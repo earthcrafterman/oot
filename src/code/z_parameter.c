@@ -2555,9 +2555,7 @@ void Interface_UpdateMagicBar(GlobalContext* globalCtx) {
                 (msgCtx->msgMode == MSGMODE_NONE) && (globalCtx->gameOverCtx.state == GAMEOVER_INACTIVE) &&
                 (globalCtx->sceneLoadFlag == 0) && (globalCtx->transitionMode == 0) && !Gameplay_InCsMode(globalCtx)) {
                 if ((gSaveContext.magic == 0) || ((func_8008F2F8(globalCtx) >= 2) && (func_8008F2F8(globalCtx) < 5)) ||
-                    ((gSaveContext.equips.buttonItems[1] != ITEM_LENS) &&
-                     (gSaveContext.equips.buttonItems[2] != ITEM_LENS) &&
-                     (gSaveContext.equips.buttonItems[3] != ITEM_LENS)) ||
+                    ((GetCMenuItem(globalCtx, 6, MENU_RETURN_MODE_VALIDATE) != ITEM_LENS)) ||
                     (globalCtx->actorCtx.unk_03 == 0)) {
                     globalCtx->actorCtx.unk_03 = 0;
                     Audio_PlaySoundGeneral(NA_SE_SY_GLASSMODE_OFF, &D_801333D4, 4, &D_801333E0, &D_801333E0,
